@@ -1,0 +1,12 @@
+---
+plan_rebuilder:
+  filters: []
+main:
+  geometry:
+  - 1367
+  - 52
+  - 300
+  - 500
+plugins:
+- syskit
+views: []
