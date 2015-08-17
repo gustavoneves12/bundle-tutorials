@@ -1,6 +1,3 @@
-Syskit.conf.use_deployments_from 'tut_deployment'
-Syskit.conf.use_deployment 'controldev::RawJoystickToMotion2D' => 'converter'
-
 ## One can require the configuration from another robot, for instance if one has
 ## a common robot class with minor modifications
 #
@@ -26,6 +23,9 @@ Robot.requires do
     # models/compositions.rb, ...). If you use the generators to create new
     # models (you should !), they are automatically updated.
     Roby.app.load_default_models
+
+    Syskit.conf.use_deployments_from 'tut_deployment'
+    Syskit.conf.use_deployment 'controldev::RawJoystickToMotion2D' => 'converter'
 end
 
 # Block evaluated to configure the system, that is set up values in Config and
@@ -51,4 +51,3 @@ end
 #
 Robot.actions do
 end
-
