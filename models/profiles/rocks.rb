@@ -12,9 +12,9 @@ module Tutorials
         define 'random_fast', Tutorials::RockControl.use(TutBrownian::Task.use_conf('default', 'fast'))
         define 'leader', Tutorials::RockControl.
             use(TutBrownian::Task).
-            use_deployments(/target/)
+            prefer_deployed_tasks(/target/)
         define 'follower', Tutorials::RockControl.
             use(TutFollower::Task, leader_def).
-            use_deployments(/follower/)
+            prefer_deployed_tasks(/follower/)
     end
 end

@@ -1,2 +1,2 @@
-require 'models/blueprints/command_generator_srv'
-TutBrownian::Task.provides Tutorials::CommandGeneratorSrv, as: 'cmd'
+require 'rock/models/services/motion2d_control_loop.rb'
+TutBrownian::Task.provides Rock::Services::Motion2DOpenLoopController, as: 'cmd'
