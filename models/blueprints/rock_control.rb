@@ -1,14 +1,20 @@
 require 'rock/models/services/motion2d_control_loop.rb'
 require 'rock/models/services/pose.rb'
 
+using_task_library 'controldev'
 using_task_library 'rock_tutorial'
 using_task_library 'tut_follower'
 using_task_library 'tut_sensor'
 
 module Tutorials
     class RockControl < Syskit::Composition
+
+        add Controldev::JoystickTask, as: 'joystick'
+        add Controldev::RawJoystickToMotion2D, as: 'converter'
         add Rock::Services::Motion2DOpenLoopController, as: "cmd"
         add RockTutorial::RockTutorialControl, as: 'rock'
+
+        joystick_child.connect_to converter_child
         cmd_child.connect_to rock_child
         
         conf 'slow',

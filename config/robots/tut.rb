@@ -6,7 +6,7 @@ end
 
 # Block evaluated to load the models this robot requires
 Robot.requires do
-    Roby.app.load_default_models
+#    Roby.app.load_default_models
     Syskit.conf.use_deployments_from 'tut_deployment'
     Syskit.conf.use_deployment 'controldev::RawJoystickToMotion2D' => 'converter'
 end
