@@ -2,9 +2,9 @@ require 'rock/models/services/motion2d_control_loop.rb'
 require 'rock/models/services/pose.rb'
 
 using_task_library 'controldev'
-using_task_library 'rock_tutorial'
 using_task_library 'tut_follower'
 using_task_library 'tut_sensor'
+using_task_library 'rock_tutorial'
 
 module Tutorials
     class RockControl < Syskit::Composition
