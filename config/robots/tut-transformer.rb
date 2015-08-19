@@ -1,3 +1,8 @@
+## One can require the configuration from another robot, for instance if one has
+## a common robot class with minor modifications
+#
+# require 'config/robots/robot_class'
+
 # Block evaluated at the very beginning of the Roby app initialization
 Robot.init do
     require 'roby/schedulers/temporal'
@@ -24,6 +29,6 @@ end
 
 Robot.actions do
     require 'models/profiles/rocks'
-    use_profile Tutorials::RocksWithoutTransformer
+    use_profile Tutorials::RocksWithTransformer
 end
 

@@ -1,10 +1,10 @@
-require 'models/blueprints/rock_control'
+require 'models/compositions/rock_control'
 using_task_library 'controldev'
 using_task_library 'tut_brownian'
 using_task_library 'tut_follower'
 
 module Tutorials
-    profile 'Rocks' do
+    profile 'BaseRocks' do
         robot do
             device(Tutorials::Devices::Converter, as: 'converter')                
             
@@ -38,7 +38,17 @@ module Tutorials
         define 'leader', Tutorials::RockControl.
             use(TutBrownian::Task, rock1_dev)
 
-        define 'follower', Tutorials::RockControl.
-            use(TutFollower::Task, rock2_dev, 'target_pose' => leader_def)
+        define 'follower', Tutorials::RockFollower.
+            use(TutFollower::Task, rock2_dev)
+    end
+    
+    profile 'RocksWithoutTransformer' do
+        use_profile BaseRocks
+        define 'follower', follower_def.use(TutSensor::Task, 'target_pose' => leader_def)
+    end
+    
+    profile 'RocksWithTransformer' do
+        use_profile BaseRocks
+        define 'follower', follower_def.use(TutSensor::TransformerTask)
     end
 end
