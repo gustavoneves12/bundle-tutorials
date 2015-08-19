@@ -1,4 +1,8 @@
 require 'models/profiles/rocks'
-class Main < Roby::Actions::Interface
-  use_profile Tutorials::RocksWithoutTransformer
+module Tutorials
+    module Actions
+        class Main < Roby::Actions::Interface
+          use_profile Tutorials::RocksWithoutTransformer
+        end  
+    end
 end

@@ -29,6 +29,6 @@ end
 
 Robot.actions do
     require 'models/profiles/rocks'
-    use_profile Tutorials::RocksWithTransformer
+    use_profile Tutorials::Profiles::RocksWithTransformer
 end
 
