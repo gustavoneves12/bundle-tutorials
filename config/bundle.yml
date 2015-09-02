@@ -3,5 +3,3 @@ bundle:
     # List of bundles we depend on
     dependencies:
         - rock
-
-        
