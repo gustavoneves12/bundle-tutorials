@@ -47,10 +47,17 @@ module Tutorials
            use_profile BaseRocks
            define 'follower', follower_def.use(TutSensor::Task, 'target_pose' => leader_def)
        end
-       
+
        profile 'RocksWithTransformer' do
            use_profile BaseRocks
-           define 'follower', follower_def.use(TutSensor::TransformerTask)
+
+           transformer do
+               frames 'leader', 'follower', 'world'
+           end
+
+           define 'follower', follower_def.
+           use(TutSensor::TransformerTask).
+           use_frames('target' => 'leader', 'ref' => 'follower', 'world' => 'world')
        end
    end
 end
