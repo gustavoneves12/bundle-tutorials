@@ -1,2 +1,5 @@
-require 'rock/models/services/motion2d_control_loop.rb'
-Controldev::RawJoystickToMotion2D.provides Rock::Services::Motion2DOpenLoopController, as: 'cmd'
+require 'models/devices/converter'
+
+class OroGen::Controldev::RawJoystickToMotion2D
+    driver_for Tutorials::Devices::Converter, as: 'driver'
+end
