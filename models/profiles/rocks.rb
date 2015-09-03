@@ -53,6 +53,8 @@ module Tutorials
 
            transformer do
                frames 'leader', 'follower', 'world'
+               dynamic_transform rock1_dev.prefer_deployed_tasks(/targert/), 'leader' => 'world'
+               dynamic_transform rock2_dev.prefer_deployed_tasks(/follower/), 'follower' => 'world'
            end
 
            define 'follower', follower_def.
