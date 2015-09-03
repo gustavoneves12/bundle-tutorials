@@ -11,10 +11,10 @@ module Tutorials
     module Compositions
         class RockControl < Syskit::Composition
 
-            add Controldev::JoystickTask, as: 'joystick'
-            add Controldev::RawJoystickToMotion2D, as: 'converter'
+            add OroGen::Controldev::JoystickTask, as: 'joystick'
+            add OroGen::Controldev::RawJoystickToMotion2D, as: 'converter'
             add Rock::Services::Motion2DOpenLoopController, as: "cmd"
-            add RockTutorial::RockTutorialControl, as: 'rock'
+            add OroGen::RockTutorial::RockTutorialControl, as: 'rock'
 
             joystick_child.connect_to converter_child
             cmd_child.connect_to rock_child
@@ -28,11 +28,11 @@ module Tutorials
         end
 
         class RockFollower < RockControl
-            overload cmd_child, TutFollower::Task
+            overload cmd_child, OroGen::TutFollower::Task
             add Tutorials::Services::DistanceBearingSensor, as: 'sensor'
             sensor_child.connect_to cmd_child
 
-            specialize sensor_child => TutSensor::Task do
+            specialize sensor_child => OroGen::TutSensor::Task do
                 add Rock::Services::Pose, as: 'target_pose'
 
                 target_pose_child.connect_to sensor_child.target_frame_port

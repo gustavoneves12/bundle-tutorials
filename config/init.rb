@@ -19,6 +19,7 @@ require 'roby/schedulers/temporal'
 Roby.scheduler = Roby::Schedulers::Temporal.new
 
 ## Uncomment to enable automatic transformer configuration support
+Roby.app.backward_compatible_naming = false
 Syskit.conf.transformer_enabled = true
 
 ##############################
