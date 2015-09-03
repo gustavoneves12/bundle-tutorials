@@ -10,10 +10,12 @@ module Tutorials
                device(Tutorials::Devices::Converter, as: 'converter')                
                
                device(Tutorials::Devices::Rock, as: "rock1").
-                   prefer_deployed_tasks(/target/)
+                   prefer_deployed_tasks(/target/).
+                   frame_transform('leader' => 'world')
                    
                device(Tutorials::Devices::Rock, as: "rock2").
-                   prefer_deployed_tasks(/follower/)
+                   prefer_deployed_tasks(/follower/).
+                   frame_transform('follower' => 'world')
                 
            end
            
@@ -53,13 +55,14 @@ module Tutorials
 
            transformer do
                frames 'leader', 'follower', 'world'
-               dynamic_transform rock1_dev.prefer_deployed_tasks(/targert/), 'leader' => 'world'
+               dynamic_transform rock1_dev.prefer_deployed_tasks(/target/), 'leader' => 'world'
                dynamic_transform rock2_dev.prefer_deployed_tasks(/follower/), 'follower' => 'world'
            end
 
            define 'follower', follower_def.
            use(OroGen::TutSensor::TransformerTask).
-           use_frames('target' => 'leader', 'ref' => 'follower', 'world' => 'world')
+           use_frames('target' => 'leader', 
+                      'world' => 'world')
        end
    end
 end
