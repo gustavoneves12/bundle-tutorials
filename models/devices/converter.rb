@@ -1,4 +1,4 @@
-require 'rock/models/services/motion2d_control_loop.rb'
+require 'rock/models/services/motion2d_control_loop'
 
 module Tutorials
     module Devices
