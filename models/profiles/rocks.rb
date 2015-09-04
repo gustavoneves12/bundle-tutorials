@@ -44,7 +44,7 @@ module Tutorials
            define 'follower', Tutorials::Compositions::RockFollower.
                use(OroGen::TutFollower::Task, rock2_dev)
        end
-       
+
        profile 'RocksWithoutTransformer' do
            use_profile BaseRocks
            define 'follower', follower_def.use(OroGen::TutSensor::Task, 'target_pose' => leader_def)
@@ -60,9 +60,13 @@ module Tutorials
            end
 
            define 'follower', follower_def.
-           use(OroGen::TutSensor::TransformerTask).
-           use_frames('target' => 'leader', 
-                      'world' => 'world')
+               use(OroGen::TutSensor::TransformerTask).
+               use_frames('target' => 'leader',
+                          'world' => 'world')
+
+           define 'to_origin', Tutorials::Compositions::RockFollower.
+               use(OroGen::TutFollower::Task, OroGen::TutSensor::TransformerTask).
+               use_frames('target' => 'world', 'world' => 'world')
        end
    end
 end
