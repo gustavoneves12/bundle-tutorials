@@ -19,7 +19,7 @@ module Tutorials
                 
            end
            
-           define 'converter', Tutorials::Compositions::RockControl.
+           define 'converter', Tutorials::Compositions::RockJoystick.
                use(converter_dev, rock1_dev)
            
            define 'random', Tutorials::Compositions::RockControl.

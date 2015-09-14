@@ -11,12 +11,9 @@ module Tutorials
     module Compositions
         class RockControl < Syskit::Composition
 
-            add OroGen::Controldev::JoystickTask, as: 'joystick'
-            add OroGen::Controldev::RawJoystickToMotion2D, as: 'converter'
             add Rock::Services::Motion2DOpenLoopController, as: "cmd"
             add OroGen::RockTutorial::RockTutorialControl, as: 'rock'
 
-            joystick_child.connect_to converter_child
             cmd_child.connect_to rock_child
 
             conf 'slow',
@@ -25,6 +22,13 @@ module Tutorials
             export rock_child.pose_samples_port
             provides Rock::Services::Pose, as: 'pose'
             
+        end
+        
+        class RockJoystick < RockControl
+            add OroGen::Controldev::JoystickTask, as: 'joystick'
+            add OroGen::Controldev::RawJoystickToMotion2D, as: 'converter'
+            
+            joystick_child.connect_to converter_child
         end
 
         class RockFollower < RockControl
